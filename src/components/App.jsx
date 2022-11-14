@@ -38,10 +38,6 @@ export const App = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   return (
     <Box>
       <h1>Phonebook</h1>
