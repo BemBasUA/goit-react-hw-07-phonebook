@@ -5,8 +5,7 @@ import { ContactList } from './Form/ContactList/ContactList';
 import shortid from 'shortid';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/constactsSlice';
-import { fetchContacts, addContact } from 'redux/operations';
+import { fetchContacts, addContact, deleteContact } from 'redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,8 +18,8 @@ export const App = () => {
     const contact = {
       name,
       phone: number,
+      id: shortid.generate(),
     };
-    contact.id = shortid.generate();
 
     const contactNames = contacts.map(({ name }) => name);
 

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/constactsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'redux/operations';
 
 export const ContactList = ({ data }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.contacts.isLoading);
   const handleClick = id => {
     dispatch(deleteContact(id));
   };
@@ -13,7 +14,11 @@ export const ContactList = ({ data }) => {
         return (
           <li key={contact.id}>
             {contact.name}: {contact.phone}{' '}
-            <button type="button" onClick={() => handleClick(contact.id)}>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={() => handleClick(contact.id)}
+            >
               Delete
             </button>
           </li>
