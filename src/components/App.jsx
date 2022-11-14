@@ -10,6 +10,10 @@ import { fetchContacts, addContact, deleteContact } from 'redux/operations';
 export const App = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   const contacts = useSelector(state => state.contacts.items);
 
   const filter = useSelector(state => state.filter);
