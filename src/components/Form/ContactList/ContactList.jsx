@@ -12,7 +12,7 @@ export const ContactList = ({ data }) => {
       {data.map(contact => {
         return (
           <li key={contact.id}>
-            {contact.name}: {contact.number}{' '}
+            {contact.name}: {contact.phone}{' '}
             <button type="button" onClick={() => handleClick(contact.id)}>
               Delete
             </button>

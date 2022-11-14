@@ -5,19 +5,20 @@ import { ContactList } from './Form/ContactList/ContactList';
 import shortid from 'shortid';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, deleteContact } from 'redux/constactsSlice';
+import { deleteContact } from 'redux/constactsSlice';
+import { fetchContacts, addContact } from 'redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
 
   const filter = useSelector(state => state.filter);
 
   const handleSubmit = (name, number) => {
     const contact = {
       name,
-      number,
+      phone: number,
     };
     contact.id = shortid.generate();
 
@@ -34,7 +35,9 @@ export const App = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Box>
